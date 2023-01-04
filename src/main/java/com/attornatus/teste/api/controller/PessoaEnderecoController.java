@@ -41,6 +41,7 @@ public class PessoaEnderecoController {
 	private EnderecoModelAssembler enderecoModelAssembler;
 	
 	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
 	public EnderecoModel adicionar(@PathVariable Long pessoaId, @RequestBody @Valid EnderecoInput enderecoInput) {
 		return enderecoService.adicionarEndereco(pessoaId, enderecoInput);
 	}
