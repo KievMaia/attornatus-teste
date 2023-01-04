@@ -1,3 +1,0 @@
-2023-01-04 12:58:00 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PESSOA" not found (this database is empty); SQL statement:
-insert into pessoa (id, data_nascimento, endereco_id, nome) values (default, ?, ?, ?) [42104-214]
