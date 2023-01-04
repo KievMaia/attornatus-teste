@@ -2,6 +2,7 @@ package com.attornatus.teste.domain.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.attornatus.teste.domain.exception.PessoaNaoEncontradaException;
 import com.attornatus.teste.domain.model.Pessoa;
@@ -13,6 +14,7 @@ public class PessoaService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
+	@Transactional
 	public Pessoa salvar(final Pessoa pessoa) {
 		return pessoaRepository.save(pessoa);
 	}
@@ -21,4 +23,5 @@ public class PessoaService {
 		return pessoaRepository.findById(pessoaId)
 				.orElseThrow(() -> new PessoaNaoEncontradaException(pessoaId));
 	}
+
 }

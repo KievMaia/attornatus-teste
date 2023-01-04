@@ -36,7 +36,7 @@ public class Pessoa {
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	public boolean adicionarEndereco(Endereco endereco) {
-		return getEnderecos().add(endereco);
-	}
+//	public boolean adicionarEndereco(Endereco endereco) {
+//		return getEnderecos().add(endereco);
+//	}
 }

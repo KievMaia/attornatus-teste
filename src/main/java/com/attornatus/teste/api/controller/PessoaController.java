@@ -41,7 +41,7 @@ public class PessoaController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public PessoaModel criar(@RequestBody @Valid PessoaInput pessoaInput) {
+	public PessoaModel adicionar(@RequestBody @Valid PessoaInput pessoaInput) {
 		Pessoa pessoa = pessoaInputDisassembler.toDomainObject(pessoaInput);
 		
 		pessoa = pessoaService.salvar(pessoa);

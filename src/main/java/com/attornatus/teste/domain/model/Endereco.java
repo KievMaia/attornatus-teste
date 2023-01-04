@@ -36,4 +36,5 @@ public class Endereco {
 	@ManyToOne
 	@JoinColumn(name = "pessoa_id", nullable = false)
 	private Pessoa pessoa;
+	
 }
