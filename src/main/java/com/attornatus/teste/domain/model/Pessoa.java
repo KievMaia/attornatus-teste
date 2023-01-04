@@ -42,7 +42,7 @@ public class Pessoa {
 	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
-	public void favoritarEndereço(Endereco endereco) {
+	public void favoritarEndereco(Endereco endereco) {
 		 this.endereco = endereco;
 	}
 }

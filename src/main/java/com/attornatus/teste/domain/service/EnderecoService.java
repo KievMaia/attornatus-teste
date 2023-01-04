@@ -57,6 +57,6 @@ public class EnderecoService {
 		Endereco endereco = enderecoRepository.findByIdAndPessoaId(enderecoId, pessoa.getId())
 				.orElseThrow(() -> new EnderecoNaoEncontradoException(enderecoId, pessoa.getId()));
 		
-		pessoa.favoritarEndereço(endereco);
+		pessoa.favoritarEndereco(endereco);
 	}
 }
