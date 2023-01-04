@@ -5,11 +5,14 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.attornatus.teste.api.assembler.EnderecoModelAssembler;
@@ -50,5 +53,12 @@ public class PessoaEnderecoController {
 		List<EnderecoModel> enderecoModels = enderecoModelAssembler.toCollectionModel(enderecoList);
 		
 		return  enderecoModels;
+	}
+	
+	@PutMapping("/{enderecoId}")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void adicionarEnderecoPrincipal(@PathVariable Long pessoaId, @PathVariable Long enderecoId) {
+		Pessoa pessoa = pessoaService.buscar(pessoaId);
+		enderecoService.favoritarEndereco(enderecoId, pessoa);
 	}
 }

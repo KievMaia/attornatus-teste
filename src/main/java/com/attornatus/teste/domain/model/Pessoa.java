@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -36,7 +38,11 @@ public class Pessoa {
 	@OneToMany(mappedBy = "pessoa")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-//	public boolean adicionarEndereco(Endereco endereco) {
-//		return getEnderecos().add(endereco);
-//	}
+	@ManyToOne
+	@JoinColumn(name = "endereco_id")
+	private Endereco endereco;
+	
+	public void favoritarEndereço(Endereco endereco) {
+		 this.endereco = endereco;
+	}
 }

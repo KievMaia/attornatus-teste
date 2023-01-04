@@ -1,5 +1,7 @@
 package com.attornatus.teste.domain.service;
 
+import java.util.Objects;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,18 @@ public class PessoaService {
 	public Pessoa buscar(final Long pessoaId) {
 		return pessoaRepository.findById(pessoaId)
 				.orElseThrow(() -> new PessoaNaoEncontradaException(pessoaId));
+	}
+	
+	public Pessoa buscarComEnderecoFavorito(final Long pessoaId) {
+		Pessoa pessoa = this.buscar(pessoaId);
+		
+		Pessoa pessoaComEnderecoFavorito = pessoaRepository.findPessoaEnderecoFavorito(pessoaId);
+		
+		if (Objects.isNull(pessoaComEnderecoFavorito)) {
+			return pessoa;
+		}
+		
+		return pessoaComEnderecoFavorito;
 	}
 
 }

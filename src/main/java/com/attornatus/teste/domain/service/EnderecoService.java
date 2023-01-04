@@ -10,6 +10,7 @@ import com.attornatus.teste.api.assembler.EnderecoInputDisassembler;
 import com.attornatus.teste.api.assembler.EnderecoModelAssembler;
 import com.attornatus.teste.api.model.EnderecoModel;
 import com.attornatus.teste.api.model.input.EnderecoInput;
+import com.attornatus.teste.domain.exception.EnderecoNaoEncontradoException;
 import com.attornatus.teste.domain.model.Endereco;
 import com.attornatus.teste.domain.model.Pessoa;
 import com.attornatus.teste.domain.repository.EnderecoRepository;
@@ -29,6 +30,11 @@ public class EnderecoService {
 	@Autowired
 	private PessoaService pessoaService;
 	
+	public Endereco buscar(Long enderecoId) {
+		return enderecoRepository.findById(enderecoId)
+				.orElseThrow(() -> new EnderecoNaoEncontradoException(enderecoId));
+	}
+	
 	@Transactional
 	public Endereco salvar(Endereco endereco) {
 		return enderecoRepository.save(endereco);
@@ -44,5 +50,13 @@ public class EnderecoService {
 		this.salvar(endereco);
 		
 		return enderecoModelAssembler.toModel(endereco);
+	}
+
+	@Transactional
+	public void favoritarEndereco(Long enderecoId, Pessoa pessoa) {
+		Endereco endereco = enderecoRepository.findByIdAndPessoaId(enderecoId, pessoa.getId())
+				.orElseThrow(() -> new EnderecoNaoEncontradoException(enderecoId, pessoa.getId()));
+		
+		pessoa.favoritarEndereço(endereco);
 	}
 }

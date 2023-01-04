@@ -7,13 +7,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class PessoaModel {
+public class PessoaResumoModel {
 
 	private Long id;
 	
 	private String nome;
 	
 	private LocalDate dataNascimento;
-	
-	private EnderecoModel endereco;
 }

@@ -7,6 +7,8 @@ import lombok.Setter;
 @Setter
 public class EnderecoModel {
 
+	private Long id;
+	
 	private String logradouro;
 
 	private String cep;
